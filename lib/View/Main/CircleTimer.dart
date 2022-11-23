@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../Constant/constant.dart';
 
 class CircleTimer extends StatelessWidget {
@@ -30,7 +29,7 @@ class CircleTimer extends StatelessWidget {
                 right: 26,
                 bottom: 2,
                 child: Text(
-                  '${startCounter}',
+                  '$startCounter',
                   style: TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold, color: amber),
                 ),
@@ -40,7 +39,7 @@ class CircleTimer extends StatelessWidget {
                 right: 22,
                 bottom: 2,
                 child: Text(
-                  '${startCounter}',
+                  '$startCounter',
                   style: TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold, color: amber),
                 ),

@@ -1,23 +1,32 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quiz/Theme/Themes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../Services/Services.dart';
+import '../../Theme/Themes.dart';
 
 class ThemeController extends GetxController {
-  bool isDarkMode = true; 
-void toggleDarkMode() {
-  isDarkMode = !isDarkMode;
-  if (isDarkMode) {
-   Get.changeTheme(Themes.darkTheme);
-  } else {
-   Get.changeTheme(Themes.lightTheme);
-  }
- update();
-}
-@override
-  void onInit() {
-    toggleDarkMode();
-    super.onInit();
+  Services services = Get.find();
+  bool? switchTheme; //switch value
+  bool? saveTheme; //to save theme status
+
+  changeTheme(bool val2) {
+    switchTheme = val2;
+  //change to light mode
+    if (switchTheme == false) {
+      Get.changeTheme(Themes.lightTheme);
+    }
+  //change to dark mode
+    if (switchTheme == true) {
+      Get.changeTheme(Themes.darkTheme);
+    }
+    //storage the switch value
+    services.sharedPreferences.setBool('dark', switchTheme!);
+   update();
   }
 
+  @override
+  void onInit() {
+    //intial theme 
+    saveTheme = services.sharedPreferences.getBool('dark') ?? false;
+    switchTheme = saveTheme!;
+    super.onInit();
+  }
 }

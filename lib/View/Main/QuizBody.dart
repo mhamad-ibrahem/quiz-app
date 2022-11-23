@@ -6,13 +6,12 @@ import '../../Controller/Controller.dart';
 class QusstionBody extends StatelessWidget {
   QusstionBody({
     Key? key,
-    required this.current,
-    required this.questionnumber,
-     this.chosenanswer,
+    required this.choosenAnswer,
+    required this.questionNumber,
   }) : super(key: key);
   QuizImplement controller = Get.put(QuizImplement(), permanent: true);
-  final int current, questionnumber;
-  final int?  chosenanswer;
+  final int choosenAnswer;
+  final int questionNumber;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,12 +20,12 @@ class QusstionBody extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          controller.checkanswer(current);
+          controller.checkanswer(choosenAnswer);
           controller.nextQuistionbyanswer();
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
-          margin:const EdgeInsets.only(left: 20,right: 20),
+          margin: const EdgeInsets.only(left: 20, right: 20),
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -34,7 +33,7 @@ class QusstionBody extends StatelessWidget {
             color: grey,
           ),
           child: Text(
-            '${current + 1}. ${controller.questions[questionnumber].options[current]}',
+            '${choosenAnswer + 1}. ${controller.questions[questionNumber].options[choosenAnswer]}',
             style: TextStyle(color: black, fontSize: 17),
           ),
         ),

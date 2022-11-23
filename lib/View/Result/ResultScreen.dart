@@ -20,45 +20,44 @@ class ResultScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                controller.finalresult > 60
+                controller.finalResult > 60
                     ? Text('Congratulation',
-                        style: TextStyle(color: amber, fontSize: 30))
+                        style:  Get.textTheme.headline2)
                     : Text('You Can Do Better',
-                        style: TextStyle(color: red, fontSize: 30)),
+                        style: TextStyle(color: red, fontSize: 25,fontWeight: FontWeight.w600)),
                 const SizedBox(
                   height: 10,
                 ),
                 Text(controller.name.toUpperCase(),
-                    style: TextStyle(color: amber, fontSize: 30)),
+                    style: TextStyle(color: amber, fontSize: 25,fontWeight: FontWeight.w500)),
                 const SizedBox(
                   height: 10,
                 ),
-                Text('Your Score is', style: Get.textTheme.headline2),
+                Text('Your Score is :', style: Get.textTheme.headline2),
                 const SizedBox(
                   height: 20,
                 ),
-                Text('${controller.finalresult}/100',
+                Text('${controller.finalResult}/100',
                     style: TextStyle(color: amber, fontSize: 30)),
                 const SizedBox(
                   height: 20,
                 ),
                 Center(
-                    child: Container(
+                    child: SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.4,
                         child: Lottie.asset('images/finish.json'))),
-                const SizedBox(
-                  height: 20,
+                 SizedBox(
+                  height: MediaQuery.of(context).size.height*0.075,
                 ),
-
                 Center(
                   child: CustomButton(
                       onPress: () {
                         controller.restart();
                       },
                       buttonText: 'Start Again',
-                      leftPadding: 100,
-                      rightPadding: 100),
+                      leftPadding: 90,
+                      rightPadding: 90),
                 )
               ],
             ),

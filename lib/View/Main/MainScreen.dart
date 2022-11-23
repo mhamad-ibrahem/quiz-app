@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz/View/Main/CircleTimer.dart';
-import 'package:quiz/View/Main/QuizBody.dart';
+import 'package:quiz/View/Main/PageViewBody.dart';
 import 'package:quiz/Widget/CustomButton.dart';
-
 import '../../Constant/constant.dart';
 import '../../Controller/Controller.dart';
 
@@ -28,11 +27,11 @@ class MainScreen extends StatelessWidget {
                         RichText(
                           text: TextSpan(
                             text: 'Question',
-                            style:  Get.textTheme.headline2,
+                            style: Get.textTheme.headline2,
                             children: <TextSpan>[
                               // question number
                               TextSpan(
-                                text: ' ${controller.questionnumber}',
+                                text: ' ${controller.questionNumber}',
                                 style: Get.textTheme.headline2,
                               ),
                               //all question count
@@ -43,8 +42,8 @@ class MainScreen extends StatelessWidget {
                           ),
                         ),
                         CircleTimer(
-                            startCounter: controller.timercounter,
-                            endCounter: controller.circletimer)
+                            startCounter: controller.timerCounter,
+                            endCounter: controller.circleTimer)
                       ],
                     );
                   },
@@ -58,7 +57,8 @@ class MainScreen extends StatelessWidget {
                       width: double.infinity,
                       height: 460,
                       decoration: BoxDecoration(
-                          color: darkGrey, borderRadius: BorderRadius.circular(15)),
+                          color: darkGrey,
+                          borderRadius: BorderRadius.circular(15)),
                       child: Padding(
                         padding: const EdgeInsets.all(20),
                         child: Column(
@@ -70,39 +70,14 @@ class MainScreen extends StatelessWidget {
                                 itemCount: controller.questions.length,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (context, index) {
-                                  controller.currentquestion = index;
-                                  return SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          controller.questions[index].question,
-                                          style: TextStyle(
-                                              color: white, fontSize: 17),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        QusstionBody(
-                                          current: 0,
-                                          questionnumber:
-                                              controller.currentquestion,
-                                        ),
-                                        QusstionBody(
-                                            current: 1,
-                                            questionnumber:
-                                                controller.currentquestion),
-                                        QusstionBody(
-                                            current: 2,
-                                            questionnumber:
-                                                controller.currentquestion),
-                                        QusstionBody(
-                                            current: 3,
-                                            questionnumber:
-                                                controller.currentquestion),
-                                      ],
-                                    ),
+                                  controller.currentQuestion = index;
+                                  return PageViewBody(
+                                    question:
+                                        controller.questions[index].question,
+                                    questionNumber1: controller.currentQuestion,
+                                    questionNumber2: controller.currentQuestion,
+                                    questionNumber3: controller.currentQuestion,
+                                    questionNumber4: controller.currentQuestion,
                                   );
                                 },
                               ),
@@ -117,6 +92,7 @@ class MainScreen extends StatelessWidget {
                   height: 50,
                 ),
                 Row(
+                  //skip question button
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     CustomButton(
